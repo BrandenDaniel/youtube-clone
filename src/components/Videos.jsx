@@ -4,13 +4,21 @@ import { VideoCard } from "./";
 import { ChannelCard } from "./";
 
 const Videos = ({ videos }) => {
-  console.log(videos);
   return (
-    <Stack direction="row" flexWrap="wrap" justifyContent="flex-start" gap={2}>
+    <Stack direction="row" flexWrap="wrap" justifyContent="center" gap={2}>
       {videos.map((item, idx) => (
-        <Box key={idx}>
-          {item.id?.videoId && <VideoCard video={item} />}
-          {item.id?.channelId && <ChannelCard channelDetail={item} />}
+        <Box
+          key={idx}
+          sx={{
+            flexBasis: { xs: "100%", sm: "320px" },
+            width: { xs: "100%", sm: "320px" },
+            display: item.id.kind === "youtube#playlist" && "none",
+          }}
+        >
+          {item.id?.kind === "youtube#video" && <VideoCard video={item} />}
+          {item.id?.kind === "youtube#channel" && (
+            <ChannelCard channelDetail={item} />
+          )}
         </Box>
       ))}
     </Stack>
