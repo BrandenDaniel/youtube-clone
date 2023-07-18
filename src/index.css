@@ -1,8 +1,13 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-size: 16px;
 }
 
 a {
@@ -34,15 +39,15 @@ a {
   color: white !important;
 }
 
-.react-player {
+/* .react-player {
   height: 77vh !important;
   width: 100% !important;
-}
+} */
 
 .search-bar {
   border: none;
   outline: none;
-  width: 350px;
+  width: 300px;
 }
 
 .category-btn {
@@ -55,9 +60,8 @@ a {
   background: transparent;
   outline: none;
   border: none;
-
   padding: 7px 15px;
-  margin: 10px 0px;
+  margin: 5px 0px;
   border-radius: 20px;
   transition: all 0.3s ease;
 }
@@ -77,12 +81,5 @@ a {
 @media screen and (max-width: 600px) {
   .scroll-horizontal {
     overflow: auto !important;
-  }
-
-  .react-player {
-    height: 45vh !important;
-  }
-  .search-bar {
-    width: 200px;
   }
 }

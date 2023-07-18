@@ -5,6 +5,7 @@ import { Typography, Box, Stack } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { Videos } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
+import "../sass/videoDetail.scss";
 
 const VideoDetail = () => {
   const { id } = useParams();
@@ -29,57 +30,42 @@ const VideoDetail = () => {
   } = videoDetails;
 
   return (
-    <Box minHeight="95vh">
-      <Stack direction={{ xs: "column", md: "row" }}>
-        <Box flex={1}>
-          <Box sx={{ width: "100%", position: "sticky", top: "86px" }}>
-            <ReactPlayer
-              url={`https://www.youtube.com/watch?v=${id}`}
-              className="react-player"
-              controls
-            />
-            <Typography color="#fff" variant="h5" fontWeight="bold" p={2}>
-              {title}
-            </Typography>
-            <Stack
-              direction="row"
-              justifyContent="space-between"
-              sx={{ color: "#fff" }}
-              py={1}
-              px={2}
-            >
-              <Link to={`/channel/${channelId}`}>
-                <Typography
-                  variant={{ sm: "subtitle1", md: "h6" }}
-                  color="#fff"
-                >
-                  {channelTitle}
-                  <CheckCircle
-                    sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
-                  />
-                </Typography>
-              </Link>
-              <Stack direction="row" gap="20px" alignItems="center">
-                <Typography variant="body1" sx={{ opacity: 0.7 }}>
-                  {parseInt(viewCount).toLocaleString()} views
-                </Typography>
+    <Box
+      sx={{
+        p: { xs: 2, md: 3 },
+        pt: { xs: 0, md: 0 },
+      }}
+      className="videoDetail"
+    >
+      <section className="videoDetail__player">
+        <div>
+          <ReactPlayer
+            url={`https://www.youtube.com/watch?v=${id}`}
+            className="react-player"
+            controls
+            playing="true"
+          />
+          <div className="videoDetail__details">
+            <h3>{title}</h3>
+            <div>
+              <h4>
+                {channelTitle}{" "}
+                <CheckCircle
+                  sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
+                />
+              </h4>
 
-                <Typography variant="body1" sx={{ opacity: 0.7 }}>
-                  {parseInt(likeCount).toLocaleString()} likes
-                </Typography>
-              </Stack>
-            </Stack>
-          </Box>
-        </Box>
-        <Box
-          px={2}
-          py={{ xs: 5, md: 1 }}
-          justifyContent="center"
-          alignItems="center"
-        >
-          <Videos videos={videos} direction="column" />
-        </Box>
-      </Stack>
+              <div>
+                <span>{parseInt(viewCount).toLocaleString()} views</span>
+                <span>{parseInt(likeCount).toLocaleString()} likes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="videoDetail__relatedVideos">
+        <Videos videos={videos} direction="column" videoDetailPage="true" />
+      </section>
     </Box>
   );
 };

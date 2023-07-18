@@ -18,26 +18,26 @@ const Feed = () => {
       <Box
         sx={{
           height: { sx: "auto", md: "92vh" },
-          borderRight: "1px solid #3d3d3d",
-          px: { sx: 0, md: 2 },
+          px: { xs: 0, md: 3 },
         }}
       >
         <Sidebar
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
-        <Typography
-          className="copyright"
-          variant="body2"
-          sx={{ mt: 1.5, color: "#fff" }}
-        >
-          Copyright 2022 Branden Ng
-        </Typography>
       </Box>
 
-      <Box p={2} sx={{ overflowY: "auto", height: "90vh", flex: 2 }}>
+      <Box
+        sx={{
+          overflowY: "auto",
+          height: "90vh",
+          flex: 2,
+          p: { xs: 3 },
+          pt: { md: 0 },
+        }}
+      >
         <Typography
-          variant="h4"
+          variant="h5"
           fontWeight="bold"
           mb={2}
           sx={{ color: "white" }}

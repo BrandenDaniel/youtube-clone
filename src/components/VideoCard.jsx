@@ -1,4 +1,4 @@
-import React from "react";
+// import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Typography, Card, CardContent, CardMedia } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
@@ -10,47 +10,44 @@ import {
   demoChannelTitle,
 } from "../utils/constants";
 
+import "../sass/videoCard.scss";
+
 const VideoCard = ({
   video: {
     id: { videoId },
     snippet,
   },
+  slice,
 }) => {
   return (
-    <Card
-      sx={{
-        boxShadow: "none",
-        borderRadius: "none",
-      }}
-    >
-      <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
-        <CardMedia
-          image={snippet?.thumbnails?.high?.url}
+    <div className="videoCard">
+      <Link
+        to={videoId ? `/video/${videoId}` : demoVideoUrl}
+        className="videoCard__thumbnail"
+      >
+        <img
+          src={snippet?.thumbnails?.high?.url || demoThumbnailUrl}
           alt={snippet?.title}
-          sx={{ width: "100%", height: 180 }}
         />
       </Link>
-      <CardContent sx={{ backgroundColor: "#1e1e1e", height: "106px" }}>
-        <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
-          <Typography variant="subtitle1" frontWeight="bold" color="#fff">
-            {snippet?.title.slice(0, 60) || demoVideoTitle.slice(0, 60)}
-          </Typography>
-        </Link>
 
-        <Link
-          to={
-            snippet?.channelId
-              ? `/channel/${snippet.channelId}`
-              : demoChannelUrl
-          }
-        >
-          <Typography variant="subtitle2" frontWeight="bold" color="gray">
-            {snippet?.channelTitle || demoChannelTitle}
-            <CheckCircle sx={{ fontSize: 12, color: "gray", ml: "5px" }} />
-          </Typography>
-        </Link>
-      </CardContent>
-    </Card>
+      <Link
+        to={videoId ? `/video/${videoId}` : demoVideoUrl}
+        className="videoCard__content"
+      >
+        {slice && snippet?.title.length > slice ? (
+          <h3>
+            {snippet?.title.slice(0, slice) + " ..." ||
+              demoVideoTitle.slice(0, slice) + " ..."}
+          </h3>
+        ) : (
+          <h3>{snippet?.title.slice(0, 70) || demoVideoTitle.slice(0, 60)}</h3>
+        )}
+        <h4>
+          {snippet?.channelTitle || demoChannelTitle} <CheckCircle />
+        </h4>
+      </Link>
+    </div>
   );
 };
 

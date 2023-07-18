@@ -1,0 +1,22 @@
+.channelDetail {
+  .channelCard {
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    &__thumbnail {
+      width: initial;
+      aspect-ratio: initial;
+
+      img {
+        margin-top: -80px;
+      }
+    }
+
+    &__content {
+      h4 {
+        justify-content: center;
+      }
+    }
+  }
+}

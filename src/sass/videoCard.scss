@@ -1,0 +1,75 @@
+.videoCard,
+.channelCard {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  &__thumbnail {
+    display: block;
+    text-align: center;
+    img {
+      width: 100%;
+      margin: 0 auto;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    &--channel {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      img {
+        width: 160px;
+        aspect-ratio: 1/1 !important;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &__content {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    h3 {
+      font-size: 1rem;
+      line-height: 22px;
+      margin: 0;
+    }
+
+    h4 {
+      display: flex;
+      align-items: center;
+      margin: 0;
+      color: gray;
+      font-weight: 500;
+    }
+
+    svg {
+      font-size: 13px;
+      margin-left: 6px;
+    }
+  }
+}
+
+.channelCard {
+  text-align: center;
+
+  &__content {
+    h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .videoCard {
+    &__thumbnail {
+      img {
+        width: 320px;
+      }
+    }
+  }
+}
