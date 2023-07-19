@@ -17,8 +17,8 @@ const Feed = () => {
     <Stack sx={{ flexDirection: { sx: "column", md: "row" } }}>
       <Box
         sx={{
-          height: { sx: "auto", md: "92vh" },
-          px: { xs: 0, md: 3 },
+          height: { sx: "auto", md: "calc(100vh - 95px)" },
+          px: { xs: 0, sm: 3, md: 5 },
         }}
       >
         <Sidebar
@@ -30,7 +30,7 @@ const Feed = () => {
       <Box
         sx={{
           overflowY: "auto",
-          height: "90vh",
+          height: { md: "calc(100vh - 95px)" },
           flex: 2,
           p: { xs: 3 },
           pt: { md: 0 },

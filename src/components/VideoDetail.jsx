@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import { Typography, Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { Videos } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import "../sass/videoDetail.scss";
+import { Loader } from "./";
 
 const VideoDetail = () => {
   const { id } = useParams();
@@ -22,43 +23,40 @@ const VideoDetail = () => {
     );
   }, [id]);
 
-  if (!videoDetails?.snippet) return "Loading...";
+  if (!videoDetails?.snippet) return <Loader />;
 
   const {
-    snippet: { title, channelId, channelTitle },
+    snippet: { title, channelTitle },
     statistics: { viewCount, likeCount },
   } = videoDetails;
 
   return (
     <Box
       sx={{
-        p: { xs: 2, md: 3 },
-        pt: { xs: 0, md: 0 },
+        px: { xs: 2, md: 3 },
       }}
       className="videoDetail"
     >
       <section className="videoDetail__player">
-        <div>
-          <ReactPlayer
-            url={`https://www.youtube.com/watch?v=${id}`}
-            className="react-player"
-            controls
-            playing="true"
-          />
-          <div className="videoDetail__details">
-            <h3>{title}</h3>
-            <div>
-              <h4>
-                {channelTitle}{" "}
-                <CheckCircle
-                  sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
-                />
-              </h4>
+        <ReactPlayer
+          url={`https://www.youtube.com/watch?v=${id}`}
+          className="react-player"
+          controls
+          playing="true"
+        />
+        <div className="videoDetail__details">
+          <h3>{title}</h3>
+          <div>
+            <h4>
+              {channelTitle}{" "}
+              <CheckCircle
+                sx={{ fontSize: "12px", color: "gray", ml: "5px" }}
+              />
+            </h4>
 
-              <div>
-                <span>{parseInt(viewCount).toLocaleString()} views</span>
-                <span>{parseInt(likeCount).toLocaleString()} likes</span>
-              </div>
+            <div>
+              <span>{parseInt(viewCount).toLocaleString()} views</span>
+              <span>{parseInt(likeCount).toLocaleString()} likes</span>
             </div>
           </div>
         </div>

@@ -25,7 +25,8 @@ const SearchBar = () => {
         border: "1px solid #e3e3e3",
         pl: 2,
         boxShadow: "none",
-        // mr: { sm: 5 },
+        flexGrow: { xs: 1, sm: 0 },
+        display: "flex",
       }}
     >
       <input

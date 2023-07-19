@@ -1,17 +1,15 @@
 .videoDetail {
   display: grid;
-  grid-template-columns: 2.25fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
+  overflow: hidden;
+  max-width: 1700px;
+  margin: 0 auto;
   &__player {
     .react-player {
       width: 100% !important;
       aspect-ratio: 16/9 !important;
       height: auto !important;
-    }
-
-    > div {
-      position: sticky;
-      top: 0;
     }
   }
 
@@ -44,10 +42,13 @@
   }
 
   &__relatedVideos {
+    overflow: auto;
     > div {
       display: grid;
       gap: 10px;
       width: 100% !important;
+      position: sticky;
+      top: 0;
 
       > div {
         width: 100% !important;
@@ -65,5 +66,12 @@
         }
       }
     }
+  }
+}
+
+@media (min-width: 900px) {
+  .videoDetail {
+    height: calc(100vh - 95px);
+    grid-template-columns: 2.25fr 1fr;
   }
 }

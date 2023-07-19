@@ -39,15 +39,10 @@ a {
   color: white !important;
 }
 
-/* .react-player {
-  height: 77vh !important;
-  width: 100% !important;
-} */
-
 .search-bar {
   border: none;
   outline: none;
-  width: 300px;
+  width: 100%;
 }
 
 .category-btn {
@@ -73,13 +68,16 @@ a {
 }
 
 @media screen and (max-width: 800px) {
-  .copyright {
-    display: none !important;
-  }
 }
 
 @media screen and (max-width: 600px) {
   .scroll-horizontal {
     overflow: auto !important;
+  }
+}
+
+@media (min-width: 600px) {
+  .search-bar {
+    width: 350px;
   }
 }
