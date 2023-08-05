@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
-import { Videos } from "./";
+import { Loader, Videos } from "./";
 import { fetchFromAPI } from "../utils/fetchFromAPI";
 import { useParams } from "react-router-dom";
 
 const SearchFeed = () => {
   const [videos, setVideos] = useState([]);
   const { searchTerm } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchFromAPI(`search?part=snippet&q=${searchTerm}`).then((data) =>
-      setVideos(data.items)
-    );
+    fetchFromAPI(`search?part=snippet&q=${searchTerm}`).then((data) => {
+      setIsLoading(false);
+      setVideos(data.items);
+    });
   }, [searchTerm]);
 
   return (
@@ -21,7 +23,7 @@ const SearchFeed = () => {
         <span style={{ color: "#FC1503" }}> {searchTerm}</span> videos
       </Typography>
 
-      <Videos videos={videos} />
+      {isLoading ? <Loader /> : <Videos videos={videos} />}
     </Box>
   );
 };
